@@ -2,6 +2,7 @@ function main() {
     _init_date_picker();
     _init_fields();
     _init_events();
+    fillConfig(1)
 
 
     console.log("Iniciando renderizado")
@@ -264,5 +265,76 @@ function _init_graph(data, name_container, name) {
 
     });
 }
+
+
+function add_column() {
+    var id = document.getElementsByClassName("column_lavel").length + 1
+
+    var new_html = "<div class=\"row\" id='column_" + id + "'>\n" +
+        "                    <div class=\"col-lg-2 col-md-6 col-sm-6 col-6 m-b\">\n" +
+        "                        <label class='column_lavel' id='" + id + "'>Column " + id + "</label>\n" +
+        "                        <select class=\"form-control chosen\" id = \"sel_column_" + id + "\" data-placeholder=\"Choose an option please\">\n" +
+        "                        </select>\n" +
+        "                    </div>\n" +
+        "                    <div class=\"col-lg-2 col-md-6 col-sm-6 col-6 m-b\" style=\"padding-left: 0px\">\n" +
+        "                        <button type=\"button\" class=\"btn btn-info button_delete_" + id + "\" onclick=delete_column(this.id) id='" + id + "' style=\"margin-top: 27px; background-color: red;border-color: red\">-</button>\n" +
+        "                    </div>\n" +
+        "                </div>"
+    var more_config = document.getElementById("more_config")
+    more_config.innerHTML = more_config.innerHTML + new_html
+    fillConfig(id)
+
+
+}
+
+function orderColumns() {
+    var columns = document.getElementsByClassName("column_lavel")
+    for (var i = 0; i < columns.length; i++) {
+        var last_id = columns[i].id
+        var div_row = document.getElementById("column_" + last_id)
+        var button_delete = document.getElementsByClassName("button_delete_" + last_id)[0]
+        var sel_column = document.getElementById("sel_column_" + last_id)
+        if (i > 0) {
+            div_row.id = "column_" + (i + 1)
+            button_delete.className = "btn btn-info button_delete_" + (i + 1)
+            button_delete.id = (i + 1)
+            sel_column.id = "sel_column_" + (i + 1)
+        }
+        columns[i].innerHTML = "Column " + (i + 1)
+        columns[i].id = (i + 1)
+    }
+}
+
+function delete_column(id_delete) {
+    document.getElementById("column_" + id_delete).remove();
+    orderColumns()
+}
+
+function fillConfig(id) {
+    var array = ["Algorithm", "X axis", "Y axis"]
+    var sel = document.getElementById('sel_column_' + id);
+    var tamano_array = array.length
+    for (var i = 0; i < tamano_array; i++) {
+        var opt = document.createElement('option');
+        opt.innerHTML = array[i];
+        opt.value = array[i];
+        sel.appendChild(opt);
+    }
+}
+
+
+$('#show_config').click(function () {
+    var config_optional = document.getElementsByClassName("config_optional")[0]
+    var show_config = document.getElementById("show_config")
+
+    if (config_optional.style.display == "none") {
+        config_optional.style.display = ""
+        show_config.textContent = "Hide configuration options"
+    } else {
+        config_optional.style.display = "none"
+        show_config.textContent = "Show configuration options"
+    }
+});
+
 
 main();

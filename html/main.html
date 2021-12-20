@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>SmartPolitech: Modelos predictivos aplicados a IoT</title>
+    <title>Modelos predictivos aplicados a IoT</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!--<link href="css/font-awesome.css" rel="stylesheet">-->
@@ -39,35 +39,44 @@
     <div class="smformvalue">
         <form method="post" class="form-horizontal">
             <div class="row">
-                <div class="col-lg-2 col-md-6 col-xs-12 m-b">
+                <div class="col-lg-2 col-md-6 col-sm-12 m-b">
                     <label>Dataset</label>
                     <select class="form-control chosen" id='dataset' data-placeholder="Choose an option please">
                     </select>
                 </div>
-                <div class="col-lg-2 col-md-6 col-xs-12 m-b">
+                <div class="col-lg-2 col-md-6 col-sm-12 m-b">
                     <label>Series</label>
                     <select class="form-control chosen" id='series' data-placeholder="Choose an option please">
                     </select>
                 </div>
-                <div class="col-lg-2 col-md-6 col-xs-12 m-b">
+                <div class="col-lg-2 col-md-6 col-sm-12 m-b">
                     <label>Days Prediction</label>
                     <select class="form-control chosen" id='days_prediction' data-placeholder="Choose an option please">
                     </select>
                 </div>
-                <div class="col-lg-2 col-md-6 col-xs-12 m-b">
+                <div class="col-lg-2 col-md-6 col-sm-12 m-b">
                     <label>Date</label>
                     <input class="form-control active" id="date_picker" type="text" name="daterange">
                 </div>
-                <div class="col-lg-3 col-md-6 col-xs-12 m-b">
+                <div class="col-lg-3 col-md-6 col-sm-12 m-b">
                     <label>Algorithms</label>
                     <select class="custom-select" multiple id="algorithms" type="text" name="Choose an option please">
                     </select>
                 </div>
                 <div class="filter_segm col-lg-12">
                     <div class="row">
-                        <div class="col-lg-2 col-md-6 col-xs-12 m-b">
+                        <div class="col-lg-2 col-md-6 col-sm-12 m-b">
                             <button type="button" class="btn btn-info" id="refresh_data"><i
                                     class="fa fa-refresh"></i> Refresh data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter_segm col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 m-b">
+                            <button type="button" class="btn btn-info" id="show_config"><i
+                                    class="fa fa-refresh"></i>Show configuration options
                             </button>
                         </div>
                     </div>
@@ -77,9 +86,49 @@
     </div>
 </div>
 
+<div class="col-lg-offset-6 config_optional" style="display: none">
+    <div class="ibox-content" style="margin-top: 20px;">
+        <div class="optional">
+            <div class="row">
+                <div class="col-12 m-b">
+                    <p>In this section you can add a file with several fields to show in the graphs</p>
+                </div>
+            </div>
+            <form method="post" class="form-config">
+                <div id="more_config">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-6 m-b">
+                            <label class="column_lavel" id="1">Column 1</label>
+                            <select class="form-control chosen" id='sel_column_1'
+                                    data-placeholder="Choose an option please">
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-6 m-b" style="padding-left: 0px">
+                            <button type="button" class="btn btn-info" onclick="add_column()" style="margin-top: 27px">+
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-6 m-b">
+                        <input class="form-control" type="file" id="formFile" placeholder="Choose a file">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-6 col-sm-12 m-b">
+                        <button type="button" class="btn btn-info" id="refresh_data"><i
+                                class="fa fa-refresh"></i> Refresh data
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="col-lg-offset-6 loading">
     <div class="ibox-content" style="margin-top: 20px;">
-        <h1 class="text_loading" style="text-align: center">Cargando...</h1>
+        <h1 class="text_loading" style="text-align: center">Loading...</h1>
     </div>
 </div>
 
