@@ -22,6 +22,7 @@ function _init_functions() {
         {"function_data": "get_data_bart", "name_algorithm": "Bayesian Additive Regressions Trees"},
         {"function_data": "get_data_gaussiannaivebayes", "name_algorithm": "Gaussian Naive Bayes"},
         {"function_data": "get_data_isotonicregression", "name_algorithm": "Isotonic Regression"},
+        {"function_data": "get_data_decisiontreeclassifier", "name_algorithm": "Decision Tree Classifier"},
     ]
 }
 

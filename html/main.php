@@ -111,6 +111,12 @@ class main
         echo json_encode($isotonicregression->run());
     }
 
+    public function get_data_decisiontreeclassifier()
+    {
+        $decisiontreeclassifier = new execute_algorithm("decisiontreeclassifier");
+        echo json_encode($decisiontreeclassifier->run());
+    }
+
 
 }
 
@@ -153,6 +159,9 @@ if (isset($_GET['function'])) {
             break;
         case "get_data_isotonicregression":
             $main->get_data_isotonicregression();
+            break;
+        case "get_data_decisiontreeclassifier":
+            $main->get_data_decisiontreeclassifier();
             break;
 
         default:
