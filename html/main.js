@@ -22,7 +22,6 @@ function _init_functions() {
         {"function_data": "get_data_bart", "name_algorithm": "Bayesian Additive Regressions Trees"},
         {"function_data": "get_data_gaussiannaivebayes", "name_algorithm": "Gaussian Naive Bayes"},
         {"function_data": "get_data_isotonicregression", "name_algorithm": "Isotonic Regression"},
-        {"function_data": "get_data_earth", "name_algorithm": "eARTH"},
     ]
 }
 
@@ -85,17 +84,6 @@ function _init_fields() {
         submit: "true",
         success: function (response) {
             console.log(response)
-            var sel = document.getElementById('series');
-            var tamano_array = response['name_series']['data'].length
-            for (var i = 0; i < tamano_array; i++) {
-                var opt = document.createElement('option');
-                if (i > 0) {
-                    opt.innerHTML = response['name_series']['data'][i]['value'];
-                    opt.value = response['name_series']['data'][i]['value'];
-                    sel.appendChild(opt);
-
-                }
-            }
             var sel = document.getElementById('algorithms');
             var tamano_array = response['name_algorithms']['data'].length
             for (var i = 0; i < tamano_array; i++) {
@@ -142,12 +130,10 @@ function _init_fields() {
 }
 
 function _get_data(function_data, name_algorithm, container) {
-    var series_name = $('#series').val();
     var date = $('#date_picker').val();
     var days_prediction = $('#days_prediction').val();
     var data = {
         "function": function_data,
-        "series_name": series_name,
         "date": date,
         "days_prediction": days_prediction
     };

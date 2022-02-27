@@ -13,13 +13,12 @@ class _dbHelper
     {
 
         $servername = "127.0.0.1";
-        $username = "joseluis";
         $username = "root";
         $password = "61016101";
 
 
         // Create connection
-        $conn = new mysqli($servername, $username,"", "SmartPolitech");
+        $conn = new mysqli($servername, $username,$password, "SmartPolitech");
 
         // Check connection
         if ($conn->connect_error) {

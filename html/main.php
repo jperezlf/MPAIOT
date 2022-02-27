@@ -110,11 +110,6 @@ class main
         $isotonicregression = new execute_algorithm("isotonicregression");
         echo json_encode($isotonicregression->run());
     }
-    public function get_data_earth()
-    {
-        $earth = new execute_algorithm("earth");
-        echo json_encode($earth->run());
-    }
 
 
 }
@@ -158,9 +153,6 @@ if (isset($_GET['function'])) {
             break;
         case "get_data_isotonicregression":
             $main->get_data_isotonicregression();
-            break;
-        case "get_data_earth":
-            $main->get_data_earth();
             break;
 
         default:
