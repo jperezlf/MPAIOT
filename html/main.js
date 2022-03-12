@@ -19,10 +19,10 @@ function _init_functions() {
         {"function_data": "get_data_svr", "name_algorithm": "Support Vector Regression"},
         {"function_data": "get_data_logisticregression", "name_algorithm": "Logistic Regression"},
         {"function_data": "get_data_stochasticgradientdescent", "name_algorithm": "Stochastic Gradient Descent"},
-        {"function_data": "get_data_bart", "name_algorithm": "Bayesian Additive Regressions Trees"},
+        {"function_data": "get_data_lasso", "name_algorithm": "LASSO Regression"},
         {"function_data": "get_data_gaussiannaivebayes", "name_algorithm": "Gaussian Naive Bayes"},
-        {"function_data": "get_data_isotonicregression", "name_algorithm": "Isotonic Regression"},
         {"function_data": "get_data_decisiontreeclassifier", "name_algorithm": "Decision Tree Classifier"},
+        {"function_data": "get_data_robustregression", "name_algorithm": "Robust Regression RANSAC"},
     ]
 }
 
@@ -32,9 +32,11 @@ function charge_algorithm(selected) {
         for (var i = 0; i < functions.length; i++) {
             var function_data = functions[i]['function_data'];
             var name_algorithm = functions[i]['name_algorithm'];
+            newContainer(i)
             var container = "container" + i;
-            _get_data(function_data, name_algorithm, container)
             $('#graph' + i)[0].style.display = '';
+            _get_data(function_data, name_algorithm, container)
+
         }
     else {
         for (var i = 0; i < functions.length; i++) {
@@ -43,6 +45,7 @@ function charge_algorithm(selected) {
                 if (functions[i]['name_algorithm'] == selected[j]) {
                     var function_data = functions[i]['function_data'];
                     var name_algorithm = functions[i]['name_algorithm'];
+                    newContainer(i)
                     var container = "container" + i;
                     $('#graph' + i)[0].style.display = '';
                     _get_data(function_data, name_algorithm, container);
@@ -66,6 +69,7 @@ function _init_events() {
             console.log(data)
             selected.push($(this).val());
         });
+        $("#graphs").empty()
         charge_algorithm(selected);
 
         $('#graphs')[0].style.display = 'none';
@@ -207,8 +211,6 @@ function show_loading() {
 
 function _init_graph(data, name_container, name) {
 
-    //data = moldear_array(data);
-
     Highcharts.chart(name_container, {
 
         title: {
@@ -307,6 +309,20 @@ function fillConfig(id) {
         opt.value = array[i];
         sel.appendChild(opt);
     }
+}
+
+function newContainer(index) {
+
+    var html = "<div class=\"col-lg-6\" id=\"graph" + index + "\">\n" +
+        "            <div class=\"ibox-content\" style=\"margin-top: 20px;\">\n" +
+        "                <div class=\"highcharts-figure\">\n" +
+        "                    <div id=\"container" + index + "\"></div>\n" +
+        "                </div>\n" +
+        "            </div>\n" +
+        "        </div>"
+
+    $("#graphs").append(html);
+
 }
 
 

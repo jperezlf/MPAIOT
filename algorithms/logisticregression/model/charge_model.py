@@ -10,7 +10,7 @@ xg_reg = pickle.load(open(name, "rb"))
 
 data = json.loads(sys.argv[-1])
 
-dataset = pd.DataFrame(data=data, dtype=float)
+dataset = pd.DataFrame(data=data, dtype=int)
 
 preds = xg_reg.predict(dataset[0:])
 

@@ -7,9 +7,7 @@ class main
 {
     public function __construct()
     {
-
         $this->db = new _dbHelper();
-
     }
 
     public function show_fields()
@@ -93,22 +91,10 @@ class main
         echo json_encode($stochasticgradientdescent->run());
     }
 
-    public function get_data_bart()
-    {
-        $bart = new execute_algorithm("bart");
-        echo json_encode($bart->run());
-    }
-
     public function get_data_gaussiannaivebayes()
     {
         $gaussiannaivebayes = new execute_algorithm("gaussiannaivebayes");
         echo json_encode($gaussiannaivebayes->run());
-    }
-
-    public function get_data_isotonicregression()
-    {
-        $isotonicregression = new execute_algorithm("isotonicregression");
-        echo json_encode($isotonicregression->run());
     }
 
     public function get_data_decisiontreeclassifier()
@@ -117,7 +103,17 @@ class main
         echo json_encode($decisiontreeclassifier->run());
     }
 
+    public function get_data_lasso()
+    {
+        $lasso = new execute_algorithm("lasso");
+        echo json_encode($lasso->run());
+    }
 
+    public function get_data_robustregression()
+    {
+        $robustregression = new execute_algorithm("robustregression");
+        echo json_encode($robustregression->run());
+    }
 }
 
 
@@ -151,23 +147,18 @@ if (isset($_GET['function'])) {
         case "get_data_stochasticgradientdescent":
             $main->get_data_stochasticgradientdescent();
             break;
-        case "get_data_bart":
-            $main->get_data_bart();
-            break;
         case "get_data_gaussiannaivebayes":
             $main->get_data_gaussiannaivebayes();
-            break;
-        case "get_data_isotonicregression":
-            $main->get_data_isotonicregression();
             break;
         case "get_data_decisiontreeclassifier":
             $main->get_data_decisiontreeclassifier();
             break;
-
-        default:
-        {
-            // do not forget to return default data, if you need it...
-        }
+        case "get_data_lasso":
+            $main->get_data_lasso();
+            break;
+        case "get_data_robustregression":
+            $main->get_data_robustregression();
+            break;
     }
 }
 
