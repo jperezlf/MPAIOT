@@ -84,24 +84,12 @@
         <div class="optional">
             <div class="row">
                 <div class="col-12 m-b">
-                    <p>In this section you can add a file with several fields to show in the graphs</p>
+                    <p>In this section you can add a file with several fields to show in the graphs (<a
+                            href="files/algorithm.csv">Download file example</a>).</p>
                 </div>
             </div>
             <form method="post" class="form-config">
-                <div id="more_config">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-6 col-6 m-b">
-                            <label class="column_lavel" id="1">Column 1</label>
-                            <select class="form-control chosen" id='sel_column_1'
-                                    data-placeholder="Choose an option please">
-                            </select>
-                        </div>
-                        <div class="col-lg-2 col-md-6 col-sm-6 col-6 m-b" style="padding-left: 0px">
-                            <button type="button" class="btn btn-info" onclick="add_column()" style="margin-top: 27px">+
-                            </button>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-6 m-b">
                         <input class="form-control" type="file" id="formFile" placeholder="Choose a file">
@@ -109,14 +97,15 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-2 col-md-6 col-sm-12 m-b">
-                        <button type="button" class="btn btn-info" id="refresh_data"><i
+                        <button type="button" class="btn btn-info" id="refresh_data_configuration"><i
                                 class="fa fa-refresh"></i> Refresh data
                         </button>
                     </div>
                 </div>
-            </form>
         </div>
+        </form>
     </div>
+</div>
 </div>
 
 <div class="col-lg-offset-6 loading">

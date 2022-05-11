@@ -29,7 +29,7 @@ class execute_algorithm
 
             $a_result = $this->db->select_data($sql);
 
-            $array_data[0]['name'] = 'Temperatura';
+            $array_data[0]['name'] = 'Temperature';
             foreach ($a_result as $result) {
                 $array = array();
                 $array[] = $result[1];
@@ -52,22 +52,18 @@ class execute_algorithm
                 $array[] = $prediction[$i];
             $array_prediction[] = $array;
             $i++;
-//             $array = array();
-//             $array[] = $dateStart . ' 14:00:00';
-//             $array[] = $prediction[$i];
-//             $array_prediction[] = $array;
-//             $i++;
+
             $dateStart = date('Y-m-d', strtotime($dateStart . '+1 day'));
         }
 
 
-        $array_data[1]['name'] = 'Temperatura Prediction';
+        $array_data[1]['name'] = 'Temperature Prediction';
         $array_data[1]['color'] = '#7CB5EC';
         $array_data[1]['lineWidth'] = 1;
         $array_data[1]['dashStyle'] = "longdash";
         $array_data[1]['marker']['enabled'] = false;
-        $array_data[1]['name'];
         $array_data[1]['data'] = $array_prediction;
+
 
         return $array_data;
     }

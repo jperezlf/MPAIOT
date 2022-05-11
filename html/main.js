@@ -34,27 +34,20 @@ function charge_algorithm(selected) {
             var name_algorithm = functions[i]['name_algorithm'];
             newContainer(i)
             var container = "container" + i;
-            $('#graph' + i)[0].style.display = '';
             _get_data(function_data, name_algorithm, container)
-
         }
     else {
         for (var i = 0; i < functions.length; i++) {
-            var enc = false;
             for (var j = 0; j < selected.length; j++) {
                 if (functions[i]['name_algorithm'] == selected[j]) {
                     var function_data = functions[i]['function_data'];
                     var name_algorithm = functions[i]['name_algorithm'];
                     newContainer(i)
                     var container = "container" + i;
-                    $('#graph' + i)[0].style.display = '';
                     _get_data(function_data, name_algorithm, container);
-                    enc = true
                     break;
                 }
             }
-            if (!enc)
-                $('#graph' + i)[0].style.display = 'none';
         }
     }
 
@@ -74,6 +67,42 @@ function _init_events() {
 
         $('#graphs')[0].style.display = 'none';
         show_loading()
+    });
+
+    $('#refresh_data_configuration').click(function () {
+
+        var dato_archivo = $('#formFile').prop("files")[0];
+        var form_data = new FormData();
+        form_data.append("file", dato_archivo);
+        $.ajax({
+            url: "main.php",
+            dataType: 'json',
+            processData: false,
+            data: form_data,
+            type: 'post',
+            contentType: false,
+            mimeType: "multipart/form-data",
+            success: function (response) {
+
+                $('#formFile').val('')
+                $("#graphs").empty()
+                var i = 0
+                response.forEach(function (element) {
+                    var algorithm = element[2]["name_algorithm"];
+                    element.pop()
+                    newContainer(i)
+                    var container = "container" + i;
+                    $('#graph' + i)[0].style.display = '';
+                    _init_graph(element, container, algorithm);
+                    i = i + 1
+                });
+
+
+            },
+            error: function () {
+                alert("Ha ocurrido un error");
+            }
+        });
     });
 
 
@@ -300,7 +329,7 @@ function delete_column(id_delete) {
 }
 
 function fillConfig(id) {
-    var array = ["Algorithm", "X axis", "Y axis"]
+    var array = ["Algorithm", "Date", "Y axis"]
     var sel = document.getElementById('sel_column_' + id);
     var tamano_array = array.length
     for (var i = 0; i < tamano_array; i++) {

@@ -2,6 +2,7 @@
 
 include_once "../db/db_helper.php";
 include_once "../algorithms/execute_algorithm.php";
+include_once "paint_file.php";
 
 class main
 {
@@ -116,8 +117,14 @@ class main
     }
 }
 
-
 $main = new main();
+
+if (isset($_FILES['file'])) {
+    $file = $_FILES['file']['tmp_name'];
+
+    $paint_file = new Paint_file();
+    echo json_encode($paint_file->run($file));
+}
 
 if (isset($_GET['function'])) {
     $action = $_GET['function'];
