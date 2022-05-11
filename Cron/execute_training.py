@@ -1,15 +1,15 @@
 import os
-from algorithms.decisiontreeclassifier.model import model_trainer as decisiontreeclassifier
-from algorithms.gaussiannaivebayes.model import model_trainer as gaussiannaivebayes
-from algorithms.lasso.model import model_trainer as lasso
-from algorithms.linearregression.model import model_trainer as linearregression
-from algorithms.linearregressionstatsmodel.model import model_trainer as linearregressionstatsmodel
-from algorithms.logisticregression.model import model_trainer as logisticregression
-from algorithms.randomforest.model import model_trainer as randomforest
-from algorithms.robustregression.model import model_trainer as robustregression
-from algorithms.sgd.model import model_trainer as sgd
-from algorithms.svr.model import model_trainer as svr
-from algorithms.xgboost.model import model_trainer as xgboost
+from Algorithms.decisiontreeclassifier.model import model_trainer as decisiontreeclassifier
+from Algorithms.gaussiannaivebayes.model import model_trainer as gaussiannaivebayes
+from Algorithms.lasso.model import model_trainer as lasso
+from Algorithms.linearregression.model import model_trainer as linearregression
+from Algorithms.linearregressionstatsmodel.model import model_trainer as linearregressionstatsmodel
+from Algorithms.logisticregression.model import model_trainer as logisticregression
+from Algorithms.randomforest.model import model_trainer as randomforest
+from Algorithms.robustregression.model import model_trainer as robustregression
+from Algorithms.sgd.model import model_trainer as sgd
+from Algorithms.svr.model import model_trainer as svr
+from Algorithms.xgboost.model import model_trainer as xgboost
 
 PROJECT_PATH = os.environ.get("PROJECT_PATH")
 

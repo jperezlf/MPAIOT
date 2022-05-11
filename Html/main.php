@@ -1,7 +1,7 @@
 <?php
 
-include_once "../db/db_helper.php";
-include_once "../algorithms/execute_algorithm.php";
+include_once "../Db/db_helper.php";
+include_once "../Algorithms/execute_algorithm.php";
 include_once "paint_file.php";
 
 class main
