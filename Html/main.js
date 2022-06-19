@@ -13,8 +13,7 @@ function _init_functions() {
 
     return [
         {"function_data": "get_data_xgboost", "name_algorithm": "XGBoost"},
-        {"function_data": "get_data_linregmult", "name_algorithm": "Linear Regression Múltiple"},
-        {"function_data": "get_data_linregmultstastmodel", "name_algorithm": "Linear Regression Múltiple Stats Model"},
+        {"function_data": "get_data_linreg", "name_algorithm": "Linear Regression"},
         {"function_data": "get_data_randomforest", "name_algorithm": "Ramdom Forest"},
         {"function_data": "get_data_svr", "name_algorithm": "Support Vector Regression"},
         {"function_data": "get_data_logisticregression", "name_algorithm": "Logistic Regression"},

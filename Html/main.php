@@ -56,16 +56,10 @@ class main
         echo json_encode($xgboost->run());
     }
 
-    public function get_data_linregmult()
+    public function get_data_linreg()
     {
         $linearregresion = new execute_algorithm("linearregression");
         echo json_encode($linearregresion->run());
-    }
-
-    public function get_data_linregmultstastmodel()
-    {
-        $linearregresionstatsmodel = new execute_algorithm("linearregressionstatsmodel");
-        echo json_encode($linearregresionstatsmodel->run());
     }
 
     public function get_data_randomforest()
@@ -136,11 +130,8 @@ if (isset($_GET['function'])) {
         case "get_data_xgboost":
             $main->get_data_xgboost();
             break;
-        case "get_data_linregmult":
-            $main->get_data_linregmult();
-            break;
-        case "get_data_linregmultstastmodel":
-            $main->get_data_linregmultstastmodel();
+        case "get_data_linreg":
+            $main->get_data_linreg();
             break;
         case "get_data_randomforest":
             $main->get_data_randomforest();

@@ -37,7 +37,8 @@ def run(path_to_project):
 
     X_train, X_test, Y_train, Y_test = train_test_split(X_train, Y_train, test_size=0.1, random_state=123)
 
-    model = LinearRegression().fit(X_train, Y_train)
+    lr_reg = LinearRegression()
+    model = lr_reg.fit(X_train, Y_train)
 
     name = path_to_project + '/algorithms/linearregression/model/train.dat'
 

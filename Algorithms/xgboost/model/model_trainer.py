@@ -24,27 +24,30 @@ def run(path_to_project):
     except IndexError:
         pass
 
-    data = pandas.read_csv(path_to_project + '/crones/file.csv', header=0)
+    data = pandas.read_csv(path_to_project + '/crones/file1.csv', header=0)
     dataset = data.drop_duplicates()
+
+    print(data)
+    exit(0)
     feature_names = dataset.columns.values
+
+
+
 
     features_to_delete = np.array(['Temperature'])
     feature_names = np.setdiff1d(feature_names, features_to_delete)
 
-    Y_train = dataset.filter(items=['Temperature'])
-    X_train = dataset.filter(items=feature_names)
+    y_train = dataset.filter(items=['Temperature'])
+    x_train = dataset.filter(items=feature_names)
 
-    X_train, X_test, Y_train, Y_test = train_test_split(X_train, Y_train, shuffle=True, test_size=0.2, random_state=123)
-
-    eval_set = [(X_train, Y_train), (X_test, Y_test)]
+    x_train, x_test, y_train, y_test = train_test_split(x_train, y_train, shuffle=True, test_size=0.2, random_state=123)
 
     xg_reg = xgb.XGBRegressor(objective='reg:squarederror', min_child_weight=0, colsample_bytree=0.8, subsample=0.8,
                               learning_rate=0.1, max_depth=9, n_estimators=1000)
 
-    # xg_reg.fit(X_train, Y_train, eval_set=eval_set, eval_metric="rmse", early_stopping_rounds=20)
-    xg_reg.fit(X_train, Y_train, eval_metric="rmse")
+    xg_reg.fit(x_train, y_train, eval_metric="rmse")
 
-    preds = xg_reg.predict(X_test, ntree_limit=0)
+    preds = xg_reg.predict(x_test, ntree_limit=0)
 
     name = path_to_project + '/algorithms/xgboost/model/train.dat'
 

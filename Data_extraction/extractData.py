@@ -65,7 +65,7 @@ def operateTable(table, lista, anio, mes):
     return lista
 
 
-def main(driver, lista, anio, mes):
+def run(driver, lista, anio, mes):
     sleep(5)
     acceptCookies(driver)
     changeToCelsius(driver)
@@ -73,15 +73,22 @@ def main(driver, lista, anio, mes):
     return operateTable(table, lista, anio, mes)
 
 
-driver = initWebdriver()
-# anios = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"]
-anios = ["2022"]
-# meses = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
-meses = ["01", "02"]
-lista = [["Year", "Month", "Day", "Temperature", "Humidity", "Wind Speed", "Pressure", "Precipitation"]]
-for anio in anios:
-    for mes in meses:
-        openUrl(driver, "https://www.wunderground.com/history/monthly/es/badajoz/LEBZ/date/" + anio + "-" + mes)
-        lista = main(driver, lista, anio, mes)
-driver.close()
-np.savetxt("file.csv", lista, delimiter=",", fmt="% s")
+def main():
+    driver = initWebdriver()
+    anios = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
+    meses = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    lista = [["Year", "Month", "Day", "Temperature", "Humidity", "Wind Speed", "Pressure", "Precipitation"]]
+    for anio in anios:
+        for mes in meses:
+            openUrl(driver, "https://www.wunderground.com/history/monthly/es/badajoz/LEBZ/date/" + anio + "-" + mes)
+            lista = run(driver, lista, anio, mes)
+    driver.close()
+    np.savetxt("file.csv", lista, delimiter=",", fmt="% s")
+
+
+main()
+
+
+
+
+
