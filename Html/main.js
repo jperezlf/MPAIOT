@@ -12,16 +12,16 @@ function main() {
 function _init_functions() {
 
     return [
-        {"function_data": "get_data_xgboost", "name_algorithm": "XGBoost"},
-        {"function_data": "get_data_linreg", "name_algorithm": "Linear Regression"},
-        {"function_data": "get_data_randomforest", "name_algorithm": "Ramdom Forest"},
-        {"function_data": "get_data_svr", "name_algorithm": "Support Vector Regression"},
-        {"function_data": "get_data_logisticregression", "name_algorithm": "Logistic Regression"},
-        {"function_data": "get_data_stochasticgradientdescent", "name_algorithm": "Stochastic Gradient Descent"},
-        {"function_data": "get_data_lasso", "name_algorithm": "LASSO Regression"},
-        {"function_data": "get_data_gaussiannaivebayes", "name_algorithm": "Gaussian Naive Bayes"},
-        {"function_data": "get_data_decisiontreeclassifier", "name_algorithm": "Decision Tree Classifier"},
-        {"function_data": "get_data_robustregression", "name_algorithm": "Robust Regression RANSAC"},
+        {"function_data": "getDataXgboost", "name_algorithm": "XGBoost"},
+        {"function_data": "getDataLinearRegression", "name_algorithm": "Linear Regression"},
+        {"function_data": "getDataRandomForest", "name_algorithm": "Ramdom Forest"},
+        {"function_data": "getDataSVR", "name_algorithm": "Support Vector Regression"},
+        {"function_data": "getDataElasticNet", "name_algorithm": "Elastic Net Regression"},
+        {"function_data": "getDataStochasticGradientDescent", "name_algorithm": "Stochastic Gradient Descent"},
+        {"function_data": "getDataLasso", "name_algorithm": "LASSO Regression"},
+        {"function_data": "getDataRidge", "name_algorithm": "Ridge Regression"},
+        {"function_data": "getDataDecisionTreeRegressor", "name_algorithm": "Decision Tree Regressor"},
+        {"function_data": "getDataRobustRegression", "name_algorithm": "Robust Regression RANSAC"},
     ]
 }
 

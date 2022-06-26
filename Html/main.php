@@ -2,6 +2,7 @@
 
 include_once "../Db/db_helper.php";
 include_once "../Algorithms/execute_algorithm.php";
+include_once "../Algorithms/execute_algorithm_dos.php";
 include_once "paint_file.php";
 
 class main
@@ -50,64 +51,64 @@ class main
         return $a_data_tag;
     }
 
-    public function get_data_xgboost()
+    public function getDataXgboost()
     {
-        $xgboost = new execute_algorithm("xgboost");
+        $xgboost = new execute_algorithm_dos("xgboost");
         echo json_encode($xgboost->run());
     }
 
-    public function get_data_linreg()
+    public function getDataLinearRegression()
     {
-        $linearregresion = new execute_algorithm("linearregression");
-        echo json_encode($linearregresion->run());
+        $linearRegresion = new execute_algorithm_dos("linearRegression");
+        echo json_encode($linearRegresion->run());
     }
 
-    public function get_data_randomforest()
+    public function getDataRandomForest()
     {
-        $randomforest = new execute_algorithm("randomforest");
-        echo json_encode($randomforest->run());
+        $randomForest = new execute_algorithm_dos("randomForest");
+        echo json_encode($randomForest->run());
     }
 
-    public function get_data_svr()
+    public function getDataSVR()
     {
-        $svr = new execute_algorithm("svr");
+        $svr = new execute_algorithm_dos("svr");
         echo json_encode($svr->run());
     }
 
-    public function get_data_logisticregression()
+    public function getDataElasticNet()
     {
-        $logisticregression = new execute_algorithm("logisticregression");
-        echo json_encode($logisticregression->run());
+        $elasticNet = new execute_algorithm_dos("elasticNet");
+        echo json_encode($elasticNet->run());
     }
 
-    public function get_data_stochasticgradientdescent()
+    public function getDataStochasticGradientDescent()
     {
-        $stochasticgradientdescent = new execute_algorithm("sgd");
-        echo json_encode($stochasticgradientdescent->run());
+        $stochasticGradientDescent = new execute_algorithm_dos("sgd");
+        echo json_encode($stochasticGradientDescent->run());
     }
 
-    public function get_data_gaussiannaivebayes()
+    public function getDataRidge()
     {
-        $gaussiannaivebayes = new execute_algorithm("gaussiannaivebayes");
-        echo json_encode($gaussiannaivebayes->run());
+        $ridge = new execute_algorithm_dos("ridge");
+        echo json_encode($ridge->run());
     }
 
-    public function get_data_decisiontreeclassifier()
+    public function getDataDecisionTreeRegressor()
     {
-        $decisiontreeclassifier = new execute_algorithm("decisiontreeclassifier");
-        echo json_encode($decisiontreeclassifier->run());
+        $decisionTreeRegressor = new execute_algorithm_dos("decisionTreeRegressor");
+        echo json_encode($decisionTreeRegressor->run());
     }
 
-    public function get_data_lasso()
+    public function getDataLasso()
     {
-        $lasso = new execute_algorithm("lasso");
+        $lasso = new execute_algorithm_dos("lasso");
         echo json_encode($lasso->run());
     }
 
-    public function get_data_robustregression()
+    public function getDataRobustRegression()
     {
-        $robustregression = new execute_algorithm("robustregression");
-        echo json_encode($robustregression->run());
+        $robustRegression = new execute_algorithm_dos("robustRegression");
+        echo json_encode($robustRegression->run());
     }
 }
 
@@ -127,35 +128,35 @@ if (isset($_GET['function'])) {
         case "show_fields":
             $main->show_fields();
             break;
-        case "get_data_xgboost":
-            $main->get_data_xgboost();
+        case "getDataXgboost":
+            $main->getDataXgboost();
             break;
-        case "get_data_linreg":
-            $main->get_data_linreg();
+        case "getDataLinearRegression":
+            $main->getDataLinearRegression();
             break;
-        case "get_data_randomforest":
-            $main->get_data_randomforest();
+        case "getDataRandomForest":
+            $main->getDataRandomForest();
             break;
-        case "get_data_svr":
-            $main->get_data_svr();
+        case "getDataSVR":
+            $main->getDataSVR();
             break;
-        case "get_data_logisticregression":
-            $main->get_data_logisticregression();
+        case "getDataElasticNet":
+            $main->getDataElasticNet();
             break;
-        case "get_data_stochasticgradientdescent":
-            $main->get_data_stochasticgradientdescent();
+        case "getDataStochasticGradientDescent":
+            $main->getDataStochasticGradientDescent();
             break;
-        case "get_data_gaussiannaivebayes":
-            $main->get_data_gaussiannaivebayes();
+        case "getDataRidge":
+            $main->getDataRidge();
             break;
-        case "get_data_decisiontreeclassifier":
-            $main->get_data_decisiontreeclassifier();
+        case "getDataDecisionTreeRegressor":
+            $main->getDataDecisionTreeRegressor();
             break;
-        case "get_data_lasso":
-            $main->get_data_lasso();
+        case "getDataLasso":
+            $main->getDataLasso();
             break;
-        case "get_data_robustregression":
-            $main->get_data_robustregression();
+        case "getDataRobustRegression":
+            $main->getDataRobustRegression();
             break;
     }
 }

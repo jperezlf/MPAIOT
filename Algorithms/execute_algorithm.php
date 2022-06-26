@@ -17,7 +17,6 @@ class execute_algorithm
 
         $dateStart = $_GET['date'];
         $dateEnd = date('Y-m-d', strtotime("+ 1 day"));
-        $array = array();
 
         while ($dateStart < $dateEnd) {
 
@@ -56,14 +55,12 @@ class execute_algorithm
             $dateStart = date('Y-m-d', strtotime($dateStart . '+1 day'));
         }
 
-
         $array_data[1]['name'] = 'Temperature Prediction';
         $array_data[1]['color'] = '#7CB5EC';
         $array_data[1]['lineWidth'] = 1;
         $array_data[1]['dashStyle'] = "longdash";
         $array_data[1]['marker']['enabled'] = false;
         $array_data[1]['data'] = $array_prediction;
-
 
         return $array_data;
     }
@@ -75,18 +72,30 @@ class execute_algorithm
         $interval = $_GET['days_prediction'];
         $array_data = array();
 
-
         for ($i = 0; $i < $interval; $i++) {
             $day = substr($dateStart, 8, 2);
             $month = substr($dateStart, 5, 2);
+            $year = substr($dateStart, 0, 4);
 
-            $sql = "SELECT avg(Humidity) as mean_Humidity, 
+            if ($dateStart < date('Y-m-d')) {
+                $sql = "SELECT Humidity, 
+                            Precipitation,
+                            Pressure,
+		                    Wind_Speed 
+                    FROM SmartPolitech.smart_data
+                    WHERE month=$month
+                        AND day=$day
+                        AND year =$year";
+            } else {
+                $sql = "SELECT avg(Humidity) as mean_Humidity, 
                             avg(Precipitation) as mean_Precipitation,
                             avg(Pressure) as mean_Pressure,
 		                    avg(Wind_Speed) as mean_Wind_Speed 
                     FROM SmartPolitech.smart_data
                     WHERE month=$month
                         AND day=$day;";
+            }
+
             $result = $this->db->select_data($sql);
 
             $humidity = $result[0][0];
@@ -94,7 +103,7 @@ class execute_algorithm
             $pleasure = $result[0][2];
             $wind_speed = $result[0][3];
 
-            $array = json_encode(array($day, $humidity, $month, $precipitation, $pleasure, $wind_speed));
+            $array = json_encode(array($day, $humidity, $month, $precipitation, $pleasure, $wind_speed, $year));
 
             $array_data[] = $array;
 
@@ -109,15 +118,6 @@ class execute_algorithm
         $result = json_decode($result);
 
         return $result;
-    }
-
-    private function get_id_serie_by_name($serie_name)
-    {
-        $sql = "SELECT id_series 
-                FROM SmartPolitech.smart_series 
-                WHERE name_series = '$serie_name'";
-        $result = $this->db->select_data($sql);
-        return $result[0][0];
     }
 
     public function run()
