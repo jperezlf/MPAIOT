@@ -36,11 +36,19 @@ def getTableInfo(driver):
     return driver.find_element_by_class_name("days")
 
 
+def clear_list(list):
+    i = 0
+    while (i < len(list)):
+        if i > 0 and (float(list[i][3]) < 2 or float(list[i][4]) < 2 or float(list[i][5]) < 2 or float(list[i][6]) < 2):
+            del list[i]
+        else:
+            i = i + 1
+
+
 def operateTable(table, lista, anio, mes):
     listlist = []
     tbody = table.find_element_by_tag_name("tbody").find_element_by_tag_name("tr")
     td = tbody.find_elements_by_xpath('./*')
-    # td.pop(2)
     td.pop(6)
     i = 0
     for col in td:
@@ -52,11 +60,8 @@ def operateTable(table, lista, anio, mes):
                 if i < 1:
                     listlist.append([anio, mes, colcol[x].text])
                 else:
-                    # if i > 0 and i != 5:
                     if i > 0:
                         listlist[x - 1].append(colcol[x].find_elements_by_tag_name("td")[1].text)
-                    # elif i == 1:
-                    #     listlist[x - 1].append(colcol[x].find_elements_by_tag_name("td")[1].text)
         i = i + 1
 
     for i in listlist:
@@ -64,44 +69,30 @@ def operateTable(table, lista, anio, mes):
     return lista
 
 
-def run(driver, lista, anio, mes):
+def run(driver, list_atr, year, month):
     sleep(5)
     acceptCookies(driver)
     changeToCelsius(driver)
     table = getTableInfo(driver)
-    return operateTable(table, lista, anio, mes)
-
-
-def clear_list(list):
-    i = 0
-    while (i < len(list)):
-        if list[i][3] < 2 or list[i][4] < 2 or list[i][5] < 2 or list[i][6] < 2:
-            del list[i]
-        else:
-            i = i + 1
+    return operateTable(table, list_atr, year, month)
 
 
 def main():
     driver = initWebdriver()
-    # anios = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]
-    anios = ["2014"]
-    meses = ["08"]
-    # meses = ["01", "02", "03", "04", "05", "06"]
-    lista = [["Year",
-              "Month",
-              "Day",
-              "Temperature",
-              "Dew Point",
-              "Humidity",
-              "Wind Speed",
-              "Pressure"]];
-    for anio in anios:
-        for mes in meses:
-            openUrl(driver, "https://www.wunderground.com/history/monthly/es/badajoz/LEBZ/date/" + anio + "-" + mes)
-            lista = run(driver, lista, anio, mes)
+    years = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
+    months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    list_atr = ["Year", "Month", "Day", "Temperature", "Dew Point", "Humidity", "Wind Speed", "Pressure"]
+    for year in years:
+        for month in months:
+            openUrl(driver, "https://www.wunderground.com/history/monthly/es/badajoz/LEBZ/date/" + year + "-" + month)
+            list = run(driver, list_atr, year, month)
     driver.close()
-    clear_list(lista)
-    np.savetxt("prueba.csv", lista, delimiter=",", fmt="% s")
+    clear_list(list)
+    np.savetxt("prueba.csv", list, delimiter=",", fmt="% s")
 
 
 main()
+
+
+
+
