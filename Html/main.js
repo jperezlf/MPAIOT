@@ -207,7 +207,8 @@ function _init_date_picker() {
         date = date.split(" - ");
         date = date[0];
     } else {
-        date = moment().subtract(4, 'months')
+        //date = moment().subtract(2, 'months')
+        date = "2022-05-01"
     }
 
 

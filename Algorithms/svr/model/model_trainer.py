@@ -41,7 +41,7 @@ def run(path_to_project):
     except IndexError:
         pass
 
-    data = pandas.read_csv(path_to_project + '/Files/file1.csv', header=0)
+    data = pandas.read_csv(path_to_project + '/Files/Dataset.csv', header=0)
     dataset = data.drop_duplicates()
 
     feature_names = dataset.columns.values

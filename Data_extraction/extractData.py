@@ -81,10 +81,11 @@ def main():
     driver = initWebdriver()
     years = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
     months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
-    list_atr = ["Year", "Month", "Day", "Temperature", "Dew Point", "Humidity", "Wind Speed", "Pressure"]
+    list_atr = [["Year", "Month", "Day", "Temperature", "Dew Point", "Humidity", "Wind Speed", "Pressure"]]
     for year in years:
         for month in months:
-            openUrl(driver, "https://www.wunderground.com/history/monthly/es/badajoz/LEBZ/date/" + year + "-" + month)
+            openUrl(driver, "https://www.wunderground.com/history/monthly/es/badajoz/LEBZ/date/"
+                    + year + "-" + month)
             list = run(driver, list_atr, year, month)
     driver.close()
     clear_list(list)
@@ -92,7 +93,3 @@ def main():
 
 
 main()
-
-
-
-
